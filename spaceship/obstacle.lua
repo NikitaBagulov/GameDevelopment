@@ -10,8 +10,8 @@ function Obstacle:create()
         0,
     love.math.random(-0.05, 0.05)
 )
-    obstacle.amplitude = Vector:create(100, 200)
-    obstacle.position = Vector:create(0, 0)
+    obstacle.amplitude = Vector:create(50, 20)
+    obstacle.position = Vector:create(200, 100)
     return obstacle
 end
 
@@ -21,6 +21,7 @@ function Obstacle:update()
     -- self.position.x = math.sin(self.angle.x) * self.amplitude.x
     self.position.x = self.position.x + 1 
     self.position.y = math.sin(self.angle.y) * self.amplitude.y
+    
 end
 
 function Obstacle:draw()

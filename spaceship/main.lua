@@ -33,9 +33,31 @@ function love.update()
     mover:update()
     obstacle:check_boundaries()
     obstacle:update()
+    
 end
 
 function love.draw()
+    print("before: ",obstacle.position.x, obstacle.position.y, mover.position.x, mover.position.y)
+
+    -- obstacle.position.x = obstacle.position.x * math.cos(obstacle.angle.x) - obstacle.position.y * math.sin(obstacle.angle.x)
+    -- obstacle.position.y = obstacle.position.y * math.cos(obstacle.angle.y) + obstacle.position.x * math.sin(obstacle.angle.y)
+    love.graphics.setColor(1, 1, 1)
+    local result = mover:line_circle_collision(mover.segments.line1.x, mover.segments.line1.y, mover.segments.line2.x, mover.segments.line2.y, obstacle.position.x, obstacle.position.y, 20)
+    if result then
+        love.graphics.setColor(0, 1, 0)
+        for count = 1, #result do
+            local x = result[count][1]
+            local y = result[count][2]
+            love.graphics.circle("fill", x, y, 4)
+        end
+        love.graphics.setColor(1, 0, 0)
+    end
+    print("after: ",obstacle.position.x, obstacle.position.y, mover.position.x, mover.position.y)
     mover:draw()
     obstacle:draw()
+    
+    
+    
+    
+
 end
